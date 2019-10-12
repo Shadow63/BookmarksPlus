@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
+import MainWindow
 import sys
 
 
@@ -35,7 +36,7 @@ def main():
         if command == 'exit':
             break
         elif command == 'qt':
-            window()
+            MainWindow.run()
 
 
 if __name__ == '__main__':

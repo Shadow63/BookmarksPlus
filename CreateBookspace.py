@@ -19,4 +19,5 @@ class CreateBookspace:
     window.setLayout(layout)
     window.show()
 
-app.exec_()
+def run():
+    app.exec_()

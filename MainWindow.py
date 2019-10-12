@@ -8,7 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import CreateBookspace.py
+import CreateBookspace
 
 
 class Ui_MainWindow(object):
@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.actionNew_Bookspace.setStatusTip(_translate("MainWindow", "Create a new bookspace"))
 
 
-if __name__ == "__main__":
+def run():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
