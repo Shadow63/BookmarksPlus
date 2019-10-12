@@ -1,4 +1,6 @@
-class UI {
+#Import statements
 
-// The UI for this project
-};
+
+# Creating the GUI for the application
+class UI :
+    def __init__(self):
