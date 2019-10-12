@@ -1,6 +1,4 @@
-class UI:
-    def __init__(self):
-        pass
+class UI {
 
-    print('hello')
-
+// The UI for this project
+};
