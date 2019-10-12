@@ -1,3 +1,9 @@
+class UI:
+    def __init__(self):
+        pass
+
+    print('hello')
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from PyQt5 import QtWidgets
@@ -38,7 +44,6 @@ def main():
             break
         elif command == 'qt':
             window()
-
 
 
 if __name__ == '__main__':
