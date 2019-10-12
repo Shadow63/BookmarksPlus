@@ -2,10 +2,8 @@ import sys
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 
-#app = QApplication([])
+import AddLinks
 
-def get_name(something):
-    print(something.text())
 
 class CreateBookspace(QWidget):
     # Main Window
@@ -14,34 +12,42 @@ class CreateBookspace(QWidget):
         self.initui()
 
     def initui(self):
-        layout = QVBoxLayout()
+        self.createAddLinksWindows = []
+        self.links = []
+        main_layout = QVBoxLayout()
         layout2 = QHBoxLayout()
+        layout3 = QHBoxLayout()
 
-        # Setting the name of the Bookspace
+        # Naming the Bookspace
         fname = QLabel()
         fname.setText("Name of this Bookspace: ")
-        name = QLineEdit()
+        self.name = QLineEdit()
 
+        # Sets the layout
         layout2.addWidget(fname)
-        layout2.addWidget(name)
+        layout2.addWidget(self.name)
 
-
-        # Some Buttons
-        layout.addLayout(layout2)
+        main_layout.addLayout(layout2)
         create = QPushButton('Create')
-        word = name.text()
+        main_layout.addWidget(create)
+        create.clicked.connect(self.get_name_button)
 
-        layout.addWidget(create)
-        create.clicked.connect(lambda: self.handleButton())
-        # layout.addWidget(QPushButton('Bottom'))
-        self.setLayout(layout)
+        links = QPushButton('Add a Link')
+        main_layout.addWidget(links)
+        links.clicked.connect(self.createAddLinksWindow)
 
-    def handleButton(self):
-        print(self.get_name)
+        self.setLayout(main_layout)
 
-    def get_name(self):
-        print(self.name.text)
+    # Gets the name of the Bookspace
+    def get_name_button(self):
+        print(self.links[0])
         return self.name.text()
+
+    def createAddLinksWindow(self):
+        create_add_links_window = AddLinks.AddLinks()
+        create_add_links_window.show()
+        self.links.append(create_add_links_window.get_name_button())
+        self.createAddLinksWindows.append(create_add_links_window)
 
 
 def run():
@@ -49,3 +55,5 @@ def run():
     ex = CreateBookspace()
     ex.show()
     sys.exit(app.exec_())
+
+

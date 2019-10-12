@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import *
 import CreateBookspace
 
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.createBookspaceWindows = []
@@ -85,3 +86,5 @@ def run():
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+run()
