@@ -1,23 +1,14 @@
 from PyQt5.QtWidgets import *
-
-app = QApplication([])
-
-
-class CreateBookspace:
-
-    window = QWidget()
+import sys
 
 
-    layout = QVBoxLayout()
-    fname = QLabel()
-    name = QLineEdit()
+class CreateBookspace(QWidget):
+    def __init__(self):
+        super(CreateBookspace, self).__init__()
+        layout = QVBoxLayout()
+        name = QLineEdit()
 
-    #layout.addWidget(fname)
-    layout.addWidget(name)
-    layout.addWidget(QPushButton('Top'))
-    layout.addWidget(QPushButton('Bottom'))
-    window.setLayout(layout)
-    window.show()
-
-def run():
-    app.exec_()
+        layout.addWidget(name)
+        layout.addWidget(QPushButton('Top'))
+        layout.addWidget(QPushButton('Bottom'))
+        self.setLayout(layout)

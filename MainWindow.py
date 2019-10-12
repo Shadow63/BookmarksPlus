@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+import CreateBookspace
 
 
 class Ui_MainWindow(object):
@@ -60,7 +61,7 @@ class Ui_MainWindow(object):
         self.actionNew_Bookspace.setStatusTip(_translate("MainWindow", "Create a new bookspace"))
 
     def createNewBookspaceWindow(self):
-        createBookspaceWindow = CreateBookspaceWindow()
+        createBookspaceWindow = CreateBookspace.CreateBookspace()
         createBookspaceWindow.show()
         self.createBookspaceWindows.append(createBookspaceWindow)
 
