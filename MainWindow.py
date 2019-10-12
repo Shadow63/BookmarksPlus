@@ -8,41 +8,45 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import CreateBookspace
+from PyQt5.QtWidgets import *
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.createBookspaceWindows = []
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.addBookspaceButton = QtWidgets.QPushButton(self.centralwidget)
         self.addBookspaceButton.setGeometry(QtCore.QRect(290, 390, 191, 61))
+
         font = QtGui.QFont()
         font.setPointSize(12)
         self.addBookspaceButton.setFont(font)
         self.addBookspaceButton.setIconSize(QtCore.QSize(16, 16))
+
         self.addBookspaceButton.setObjectName("addBookspaceButton")
         MainWindow.setCentralWidget(self.centralwidget)
+
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
         self.menuFILE = QtWidgets.QMenu(self.menubar)
         self.menuFILE.setObjectName("menuFILE")
         MainWindow.setMenuBar(self.menubar)
+
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
         self.actionNew_Bookspace = QtWidgets.QAction(MainWindow)
         self.actionNew_Bookspace.setObjectName("actionNew_Bookspace")
         self.menuFILE.addAction(self.actionNew_Bookspace)
         self.menubar.addAction(self.menuFILE.menuAction())
 
-        self.actionNew_Bookspace.triggered.connect(lambda: CreateBookspace.run())
-        self.actionAddBookspace = QtWidgets.QAction(MainWindow)
-        self.actionAddBookspace.setObjectName("actionAddBookspace")
-
+        self.addBookspaceButton.clicked.connect(self.createNewBookspaceWindow)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -55,6 +59,22 @@ class Ui_MainWindow(object):
         self.actionNew_Bookspace.setText(_translate("MainWindow", "New Bookspace"))
         self.actionNew_Bookspace.setStatusTip(_translate("MainWindow", "Create a new bookspace"))
 
+    def createNewBookspaceWindow(self):
+        createBookspaceWindow = CreateBookspaceWindow()
+        createBookspaceWindow.show()
+        self.createBookspaceWindows.append(createBookspaceWindow)
+
+
+class CreateBookspaceWindow(QtWidgets.QWidget):
+    def __init__(self):
+        super(CreateBookspaceWindow, self).__init__()
+        layout = QVBoxLayout()
+        name = QLineEdit()
+
+        layout.addWidget(name)
+        layout.addWidget(QPushButton('Top'))
+        layout.addWidget(QPushButton('Bottom'))
+        self.setLayout(layout)
 
 def run():
     import sys

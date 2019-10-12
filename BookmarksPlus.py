@@ -6,20 +6,6 @@ import MainWindow
 import sys
 
 
-def window():
-    app = QApplication(sys.argv)
-    win = QMainWindow()
-    win.setGeometry(0, 0, 300, 300)
-    win.setWindowTitle('Bookmarks Plus!')
-
-    label = QtWidgets.QLabel(win)
-    label.setText("Test")
-    label.move(50, 50)
-
-    win.show()
-    sys.exit(app.exec_())
-
-
 def main():
     print('Starting up Bookmarks Plus Command-Line Interface...\n\n\n')
 
