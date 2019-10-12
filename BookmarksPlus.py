@@ -5,6 +5,13 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
 
+class UI:
+    def __init__(self):
+        pass
+
+    print('hello')
+
+
 def window():
     app = QApplication(sys.argv)
     win = QMainWindow()
