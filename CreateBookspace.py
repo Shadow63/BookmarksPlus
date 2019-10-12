@@ -12,7 +12,7 @@ class CreateBookspace:
     fname = QLabel()
     name = QLineEdit()
 
-    #layout.addWidget(fname
+    #layout.addWidget(fname)
     layout.addWidget(name)
     layout.addWidget(QPushButton('Top'))
     layout.addWidget(QPushButton('Bottom'))
