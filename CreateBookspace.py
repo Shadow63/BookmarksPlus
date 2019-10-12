@@ -33,7 +33,7 @@ class CreateBookspace(QWidget):
 
         layout.addWidget(create)
         create.clicked.connect(lambda: self.handleButton())
-        layout.addWidget(QPushButton('Bottom'))
+        # layout.addWidget(QPushButton('Bottom'))
         self.setLayout(layout)
 
     def handleButton(self):
@@ -49,5 +49,3 @@ def run():
     ex = CreateBookspace()
     ex.show()
     sys.exit(app.exec_())
-
-run()
