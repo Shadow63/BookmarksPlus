@@ -7,6 +7,7 @@ class AddLinks(QWidget):
     # Main Window
     def __init__(self):
         super().__init__()
+        self.setWindowTitle('Add a link')
         self.initui()
 
     def initui(self):

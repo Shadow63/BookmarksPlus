@@ -17,6 +17,7 @@ class CreateBookspace(QWidget):
     def __init__(self, parentWindow):
         super().__init__()
         self.initui()
+        self.setWindowTitle('Create a Bookspace')
         self.parentWindow = parentWindow
 
     def initui(self):
