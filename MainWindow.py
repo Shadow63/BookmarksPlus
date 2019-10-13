@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
 
 
 
-
+        randomVar = 8
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
