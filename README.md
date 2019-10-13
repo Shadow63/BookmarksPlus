@@ -24,3 +24,4 @@ Andy Chen - aychen99
 2. Run the commands 'pip install PyQt5' and 'pip install selenium' from your OS's command line.
 3. Install Mozilla Firefox and Mozilla's Gecko Driver.
 4. Download all the files in our repository to any folder in your computer and run 'MainWindow.py'! 
+If you want, you may also create a desktop shortcut to access it even more easily.
