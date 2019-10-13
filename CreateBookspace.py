@@ -71,7 +71,7 @@ class CreateBookspace(QWidget):
         create_add_links_window = AddLinks.AddLinks()
         create_add_links_window.show()
         self.create_add_links_windows.append(create_add_links_window)
-
+#
     def onClicked(self):
         btn = self.sender()
         print(btn.text())
