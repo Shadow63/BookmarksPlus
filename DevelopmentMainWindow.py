@@ -16,11 +16,12 @@ from pathlib import Path
 from PyQt5.QtWidgets import *
 import CreateBookspace
 
-scripts_path = Path(os.path.dirname(os.path.realpath(__file__)) + '/Scripts')
+scripts_path = Path(os.path.dirname(os.path.realpath(__file__)) + '/scripts')
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.createBookspaceWindows = []
+        self.allScriptsListed = []
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -77,9 +78,11 @@ class Ui_MainWindow(object):
 
 
     def addBookspaces(self, listWidget):
+        self.allScriptsListed.clear()
         onlyfiles = [f for f in listdir(scripts_path) if isfile(join(scripts_path, f))]
         for file in onlyfiles:
             self.addBookspaceToListWidget(listWidget, file)
+            self.allScriptsListed.append(file)
 
     def addBookspaceToListWidget(self, listWidget, filename):
         lWItem = QtWidgets.QListWidgetItem()
