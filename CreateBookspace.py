@@ -31,6 +31,7 @@ class CreateBookspace(QWidget):
         create = QPushButton('Create')
         main_layout.addWidget(create)
         create.clicked.connect(self.get_name_button)
+        create.clicked.connect(self.close)
 
         links = QPushButton('Add a Link')
         main_layout.addWidget(links)
@@ -40,8 +41,8 @@ class CreateBookspace(QWidget):
 
     # Gets the name of the Bookspace
     def get_name_button(self):
-        # print(self.links[0])
-        BookspacesData.add_bookspace(self.name.text(), ['https://apple.com/'])
+       # BookspacesData.add_bookspace(self.name.text(), ['https://apple.com/'])
+        #linksArray = []
         return self.name.text()
 
     def createAddLinksWindow(self):
@@ -56,6 +57,10 @@ class CreateBookspace(QWidget):
 def addLink(link):
     linksArray.append(link)
     print(linksArray)
+
+def resetLink():
+    while(len(linksArray) != 0):
+        linksArray.pop()
 
 def run():
     app = QApplication(sys.argv)
