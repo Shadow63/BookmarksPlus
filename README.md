@@ -12,7 +12,9 @@ lets you create "bookspaces" (short for bookmark workspaces)
 that store multiple sites. Each time you create a bookspace, our 
 program creates an associated Python script that you can run 
 with just a single click in the main GUI window. You can also delete 
-bookspaces or store log-in information to auto-log-into sites!  
+bookspaces or store log-in information to auto-log-into sites! And 
+finally, being built in Python with a binding for Qt, this program 
+is also cross-platform! (Note: only tested on Mac OS X and Windows 10) 
 
 ### Team Members - GitHub Username
 Anh Nugyen - anhmn99  
@@ -22,6 +24,8 @@ Andy Chen - aychen99
 ### Dependencies and Requirements
 1. Install python 3.0 or later.
 2. Run the commands 'pip install PyQt5' and 'pip install selenium' from your OS's command line.
-3. Install Mozilla Firefox and Mozilla's Gecko Driver.
+3. Decide which browser(s) you want to use. If you want to use Mozilla Firefox, you will need to 
+download Mozilla's Gecko Driver as well. If you want to use Google Chrome, you 
+will need to download Chrome Driver.
 4. Download all the files in our repository to any folder in your computer and run 'MainWindow.py'! 
 If you want, you may also create a desktop shortcut to access it even more easily.
