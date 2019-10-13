@@ -12,6 +12,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
+from Bookspace import BookspacesData
 import subprocess
 import sys
 
@@ -115,7 +116,8 @@ class Ui_MainWindow(object):
 
     def deleteBookspace(self, filename):
         filepath = join(scripts_path, filename)
-        os.remove(filepath)
+        BookspacesData.delete_bookspace(filename[:-3])
+        # os.remove(filepath)
         self.listWidget.clear()
         self.addBookspaces(self.listWidget)
 
