@@ -22,7 +22,7 @@ class BookspacesData:
 
     # Adds a bookspace to the database
     @staticmethod
-    def add_bookspace(bookspace_name, urls, usernames, passwords, is_focused, has_next):
+    def add_bookspace(bookspace_name, urls, usernames, passwords, is_focused, has_next, browser):
         bookspaces_list = BookspacesData.get_bookspaces()
 
         # Checks if name is a duplicate
@@ -36,14 +36,14 @@ class BookspacesData:
                 init_sleep_time = 5
                 after_username_sleep_time = 1
                 enter_sleep_time = 3
-                browser = 'Firefox()'
+                user_browser = browser + '()'
 
                 file_ptr.write(
 """from selenium import webdriver
 import pyautogui
 import time
 
-browser = webdriver.""" + browser + """
+browser = webdriver.""" + user_browser + """
 browser.get('""" + urls[0] + "')\n")
 
                 # Handling logins, only if there are more than 1 login credentials
