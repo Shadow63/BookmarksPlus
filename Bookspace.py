@@ -7,6 +7,7 @@ class BookspacesData:
         pass
 
     bookspaces_data_file = 'bookspaces.txt'
+    randomVar = 8
 
     # Retrieves the list of bookspaces the user has created
     @staticmethod
@@ -30,7 +31,6 @@ class BookspacesData:
             with open(BookspacesData.bookspaces_data_file, 'a') as f:
                 f.write(bookspace_name + '\n')
             file_ptr = open('scripts/' + bookspace_name + '.py', 'a')
-            file_ptr("")
 
             # Creating script file, only if there are links
             if len(urls) > 0:
