@@ -9,13 +9,13 @@ usernameArray = []
 passwordArray = []
 focusedArray = []
 nextArray = []
-randomVar = 8
 
 class CreateBookspace(QWidget):
     # Main Window
-    def __init__(self):
+    def __init__(self, parentWindow):
         super().__init__()
         self.initui()
+        self.parentWindow = parentWindow
 
     def initui(self):
         self.create_add_links_windows = []
@@ -47,6 +47,7 @@ class CreateBookspace(QWidget):
     # Gets the name of the Bookspace
     def get_name_button(self):
         BookspacesData.add_bookspace(self.name.text(), linksArray, usernameArray, passwordArray, focusedArray, nextArray)
+        self.parentWindow.addBookspaces(self.parentWindow.listWidget)
         return self.name.text()
 
     def createAddLinksWindow(self):

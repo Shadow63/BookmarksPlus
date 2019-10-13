@@ -50,16 +50,9 @@ class Ui_MainWindow(object):
         self.listWidget.setAlternatingRowColors(True)
         self.listWidget.setObjectName("listWidget")
 
-
-
-
         self.listWidget.itemDoubleClicked.connect(self.runBookspace)
         self.addBookspaces(self.listWidget)
         self.addBookspaceButton.clicked.connect(self.createNewBookspaceWindow)
-
-
-
-        randomVar = 8
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -82,6 +75,7 @@ class Ui_MainWindow(object):
 
     def addBookspaces(self, listWidget):
         self.allScriptsListed.clear()
+        self.listWidget.clear()
         onlyfiles = [f for f in listdir(scripts_path) if isfile(join(scripts_path, f))]
         for file in onlyfiles:
             self.addBookspaceToListWidget(listWidget, file)
@@ -121,9 +115,12 @@ class Ui_MainWindow(object):
 
 
     def createNewBookspaceWindow(self):
-        createBookspaceWindow = CreateBookspace.CreateBookspace()
-        createBookspaceWindow.show()
+        createBookspaceWindow = CreateBookspace.CreateBookspace(self)
         self.createBookspaceWindows.append(createBookspaceWindow)
+        quit = QtWidgets.QAction("Quit", createBookspaceWindow)
+        quit.triggered.connect(lambda: self.addBookspaces(self.listWidget))
+        createBookspaceWindow.addAction(quit)
+        createBookspaceWindow.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
