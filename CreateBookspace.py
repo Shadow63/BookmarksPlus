@@ -44,7 +44,7 @@ class CreateBookspace(QWidget):
         self.radiobutton2.toggled.connect(self.onClicked)
         layout3.addWidget(self.radiobutton2, 0, 1)
 
-        self.radiobutton3 = QRadioButton("Edge")
+        self.radiobutton3 = QRadioButton("Safari")
         self.radiobutton3.toggled.connect(self.onClicked)
         layout3.addWidget(self.radiobutton3, 0, 2)
 
@@ -53,6 +53,7 @@ class CreateBookspace(QWidget):
         create = QPushButton('Create')
         main_layout.addWidget(create)
         create.clicked.connect(self.get_name_button)
+        create.clicked.connect(resetLink)
         create.clicked.connect(self.close)
 
         links = QPushButton('Add a Link')
