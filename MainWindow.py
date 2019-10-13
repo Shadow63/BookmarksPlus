@@ -119,9 +119,6 @@ class Ui_MainWindow(object):
     def createNewBookspaceWindow(self):
         createBookspaceWindow = CreateBookspace.CreateBookspace(self)
         self.createBookspaceWindows.append(createBookspaceWindow)
-        quit = QtWidgets.QAction("Quit", createBookspaceWindow)
-        quit.triggered.connect(lambda: self.addBookspaces(self.listWidget))
-        createBookspaceWindow.addAction(quit)
         createBookspaceWindow.show()
 
     def retranslateUi(self, MainWindow):
