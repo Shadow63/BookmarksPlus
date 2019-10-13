@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
     def addBookspaceToListWidget(self, listWidget, filename):
         lWItem = QtWidgets.QListWidgetItem()
         bookspace = QtWidgets.QWidget()
-        bookspaceText = QtWidgets.QLabel(filename)
+        bookspaceText = QtWidgets.QLabel(filename.replace('.py', ' '))
         bookpaceButton = QtWidgets.QPushButton("DELETE")
         bookpaceButton.clicked.connect(lambda: self.deleteBookspace(filename))
         widgetLayout = QtWidgets.QHBoxLayout()

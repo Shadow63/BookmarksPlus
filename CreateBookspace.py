@@ -75,7 +75,6 @@ class CreateBookspace(QWidget):
 #
     def onClicked(self):
         btn = self.sender()
-        print(btn.text())
         self.bowser = btn.text()
 
 def addLink(link):
@@ -107,4 +106,3 @@ def run():
     ex = CreateBookspace()
     ex.show()
     sys.exit(app.exec_())
-
