@@ -6,4 +6,3 @@ G2
 UNC
 NC State
 Apple
-Google
