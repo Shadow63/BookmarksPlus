@@ -7,6 +7,7 @@ class BookspacesData:
         pass
 
     bookspaces_data_file = 'bookspaces.txt'
+    randomVar = 8
 
     # Retrieves the list of bookspaces the user has created
     @staticmethod
@@ -33,6 +34,10 @@ class BookspacesData:
 
             # Creating script file, only if there are links
             if len(urls) > 0:
+                init_sleep_time = 5
+                after_username_sleep_time = 1
+                enter_sleep_time = 3
+
                 file_ptr.write(
 """from selenium import webdriver
 import pyautogui
@@ -44,7 +49,7 @@ browser.get('""" + urls[0] + "')\n")
                 # Handling logins, only if there are more than 1 login credentials
                 if len(usernames[0]) > 0 and not is_focused[0] and not has_next[0]:
                     file_ptr.write(
-"""time.sleep(10)
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
 pyautogui.press('tab')
 time.sleep(1)
 pyautogui.typewrite('""" + usernames[0] +
@@ -52,16 +57,25 @@ pyautogui.typewrite('""" + usernames[0] +
 "pyautogui.press('enter')\n\n")
                 if len(usernames[0]) > 0 and is_focused[0] and not has_next[0]:
                     file_ptr.write(
-"""time.sleep(10)
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
 pyautogui.typewrite('""" + usernames[0] +
 "')\n" + """time.sleep(1)\npyautogui.press('tab')\npyautogui.typewrite('""" + passwords[0] + "')\n" +
 "pyautogui.press('enter')\n\n")
-#                 if len(usernames[0]) > 0 and is_focused[0] and has_next[0]:
-#                     file_ptr.write(
-# """time.sleep(10)
-# pyautogui.typewrite(""" + usernames[0] +
-# ")\n" + """time.sleep(1)\npyautogui.press('tab')\npyautogui.typewrite(""" + passwords[
-#     0] + ")\n\n")
+                if len(usernames[0]) > 0 and not is_focused[0] and has_next[0]:
+                    file_ptr.write(
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
+pyautogui.press('tab')
+time.sleep(1)
+pyautogui.typewrite('""" + usernames[0] +
+"')\npyautogui.press('enter')\ntime.sleep(" + str(enter_sleep_time) + ")\npyautogui.typewrite('" + passwords[0] + "')\n" +
+"pyautogui.press('enter')\n\n")
+                if len(usernames[0]) > 0 and is_focused[0] and has_next[0]:
+                    file_ptr.write(
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
+pyautogui.typewrite('""" + usernames[0] +
+"')\npyautogui.press('enter')\n" + """time.sleep(""" + str(enter_sleep_time) + ")\npyautogui.typewrite('""" + passwords[
+    0] + "')\n" +
+"pyautogui.press('enter')\n\n")
 
                 for i in range(1, len(urls)):
                     open_url_script = 'window.open("' + urls[i] + '", "_blank")'
@@ -71,11 +85,32 @@ pyautogui.typewrite('""" + usernames[0] +
 
                     if len(usernames[i]) > 0 and not is_focused[i] and not has_next[i]:
                         file_ptr.write(
-"""time.sleep(10)
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
 pyautogui.press('tab')
 time.sleep(1)
 pyautogui.typewrite(""" + usernames[i] +
 ")\n" + """time.sleep(1)\npyautogui.press('tab')\npyautogui.typewrite(""" + passwords[i] + ")\n" +
+"pyautogui.press('enter')\n\n")
+                    if len(usernames[i]) > 0 and is_focused[i] and not has_next[i]:
+                        file_ptr.write(
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
+pyautogui.typewrite('""" + usernames[i] +
+"')\n" + """time.sleep(1)\npyautogui.press('tab')\npyautogui.typewrite('""" + passwords[i] + "')\n" +
+"pyautogui.press('enter')\n\n")
+                    if len(usernames[i]) > 0 and not is_focused[i] and has_next[i]:
+                        file_ptr.write(
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
+pyautogui.press('tab')
+time.sleep(1)
+pyautogui.typewrite('""" + usernames[i] +
+"')\npyautogui.press('enter')\ntime.sleep(" + str(enter_sleep_time) + ")\npyautogui.typewrite('" + passwords[i] + "')\n" +
+"pyautogui.press('enter')\n\n")
+                    if len(usernames[i]) > 0 and is_focused[i] and has_next[i]:
+                        file_ptr.write(
+"""time.sleep(""" + str(init_sleep_time) + ")\n" + """
+pyautogui.typewrite('""" + usernames[i] +
+"')\npyautogui.press('enter')\n" + """time.sleep(""" + str(enter_sleep_time) + ")\npyautogui.typewrite('""" +
+passwords[i] + "')\n" +
 "pyautogui.press('enter')\n\n")
         else:
             print('error: bookspace name already exists')
