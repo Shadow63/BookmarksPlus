@@ -51,6 +51,9 @@ class Ui_MainWindow(object):
 
 
         self.addBookspaces(self.listWidget)
+        self.addBookspaceButton.clicked.connect(self.createNewBookspaceWindow)
+
+
 
 
 
@@ -78,9 +81,28 @@ class Ui_MainWindow(object):
         for file in onlyfiles:
             self.addBookspaceToListWidget(listWidget, file)
 
-    def addBookspaceToListWidget(self, listWidget, file):
-        item = QtWidgets.QListWidgetItem(file)
-        listWidget.addItem(item)
+    def addBookspaceToListWidget(self, listWidget, filename):
+        lWItem = QtWidgets.QListWidgetItem()
+        bookspace = QtWidgets.QWidget()
+        bookspaceText = QtWidgets.QLabel(filename)
+        bookpaceButton = QtWidgets.QPushButton("DELETE")
+        bookpaceButton.clicked.connect(lambda: self.deleteBookspace(filename))
+        widgetLayout = QtWidgets.QHBoxLayout()
+        widgetLayout.addWidget(bookspaceText)
+        widgetLayout.addWidget(bookpaceButton, alignment=QtCore.Qt.AlignRight)
+        widgetLayout.addStretch()
+        bookspace.setLayout(widgetLayout)
+        lWItem.setSizeHint(bookspace.sizeHint())
+
+        listWidget.addItem(lWItem)
+        listWidget.setItemWidget(lWItem, bookspace)
+
+    def deleteBookspace(self, filename):
+        filepath = join(scripts_path, filename)
+        os.remove(filepath)
+        self.listWidget.clear()
+        self.addBookspaces(self.listWidget)
+
 
     def createNewBookspaceWindow(self):
         createBookspaceWindow = CreateBookspace.CreateBookspace()
