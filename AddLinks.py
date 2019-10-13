@@ -12,7 +12,7 @@ class AddLinks(QWidget):
         main_layout = QVBoxLayout()
         layout2 = QHBoxLayout()
 
-        #Creating Links
+        # Creating Links
         link_label = QLabel()
         link_label.setText("Enter a link: ")
         self.link = QLineEdit()
