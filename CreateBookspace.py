@@ -9,6 +9,8 @@ usernameArray = []
 passwordArray = []
 focusedArray = []
 nextArray = []
+randomVar = 8
+radioBrowser = ''
 
 class CreateBookspace(QWidget):
     # Main Window
@@ -19,9 +21,10 @@ class CreateBookspace(QWidget):
 
     def initui(self):
         self.create_add_links_windows = []
+        self.bowser = "Chrome"
         main_layout = QVBoxLayout()
         layout2 = QHBoxLayout()
-        layout3 = QHBoxLayout()
+        layout3 = QGridLayout()
 
         # Naming the Bookspace
         fname = QLabel()
@@ -32,7 +35,21 @@ class CreateBookspace(QWidget):
         layout2.addWidget(fname)
         layout2.addWidget(self.name)
 
+        self.radiobutton1 = QRadioButton("Firefox")
+        self.radiobutton1.toggled.connect(self.onClicked)
+        layout3.addWidget(self.radiobutton1, 0, 0)
+
+        self.radiobutton2 = QRadioButton("Chrome")
+        self.radiobutton2.setChecked(True)
+        self.radiobutton2.toggled.connect(self.onClicked)
+        layout3.addWidget(self.radiobutton2, 0, 1)
+
+        self.radiobutton3 = QRadioButton("Edge")
+        self.radiobutton3.toggled.connect(self.onClicked)
+        layout3.addWidget(self.radiobutton3, 0, 2)
+
         main_layout.addLayout(layout2)
+        main_layout.addLayout(layout3)
         create = QPushButton('Create')
         main_layout.addWidget(create)
         create.clicked.connect(self.get_name_button)
@@ -46,38 +63,34 @@ class CreateBookspace(QWidget):
 
     # Gets the name of the Bookspace
     def get_name_button(self):
-        BookspacesData.add_bookspace(self.name.text(), linksArray, usernameArray, passwordArray, focusedArray, nextArray)
+        BookspacesData.add_bookspace(self.name.text(), linksArray, usernameArray, passwordArray, focusedArray, nextArray, self.bowser)
         self.parentWindow.addBookspaces(self.parentWindow.listWidget)
         return self.name.text()
 
     def createAddLinksWindow(self):
         create_add_links_window = AddLinks.AddLinks()
         create_add_links_window.show()
-        # self.links.append(create_add_links_window.get_name_button())
         self.create_add_links_windows.append(create_add_links_window)
 
-        # print(self.links)
-
+    def onClicked(self):
+        btn = self.sender()
+        print(btn.text())
+        self.bowser = btn.text()
 
 def addLink(link):
     linksArray.append(link)
-    print(linksArray)
 
 def addUsername(username):
     usernameArray.append(username)
-    print(usernameArray)
 
 def addPassword(password):
     passwordArray.append(password)
-    print(passwordArray)
 
 def addFocused(focus):
     focusedArray.append(focus)
-    print(focusedArray)
 
 def addNext(next):
     nextArray.append(next)
-    print(nextArray)
 
 # Resets the array for each bookspace
 def resetLink():
@@ -93,5 +106,4 @@ def run():
     ex = CreateBookspace()
     ex.show()
     sys.exit(app.exec_())
-
 

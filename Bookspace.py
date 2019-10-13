@@ -33,7 +33,7 @@ class BookspacesData:
 
             # Creating script file, only if there are links
             if len(urls) > 0:
-                init_sleep_time = 5
+                init_sleep_time = 2
                 after_username_sleep_time = 1
                 enter_sleep_time = 3
                 user_browser = browser + '()'
