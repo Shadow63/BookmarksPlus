@@ -64,19 +64,11 @@ class Ui_MainWindow(object):
     def createNewBookspaceWindow(self):
         createBookspaceWindow = CreateBookspace.CreateBookspace()
         createBookspaceWindow.show()
+        CreateBookspace.resetLink()
         self.createBookspaceWindows.append(createBookspaceWindow)
 
 
-class CreateBookspaceWindow(QtWidgets.QWidget):
-    def __init__(self):
-        super(CreateBookspaceWindow, self).__init__()
-        layout = QVBoxLayout()
-        name = QLineEdit()
 
-        layout.addWidget(name)
-        layout.addWidget(QPushButton('Top'))
-        layout.addWidget(QPushButton('Bottom'))
-        self.setLayout(layout)
 
 def run():
     import sys
