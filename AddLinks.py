@@ -91,7 +91,6 @@ class AddLinks(QWidget):
         return self.username.text()
 
     def get_password_button(self):
-        randomVar = 8
         CreateBookspace.addPassword(self.password.text())
         return self.password.text()
 

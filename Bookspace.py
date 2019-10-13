@@ -7,7 +7,6 @@ class BookspacesData:
         pass
 
     bookspaces_data_file = 'bookspaces.txt'
-    randomVar = 8
 
     # Retrieves the list of bookspaces the user has created
     @staticmethod

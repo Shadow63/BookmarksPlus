@@ -9,7 +9,6 @@ usernameArray = []
 passwordArray = []
 focusedArray = []
 nextArray = []
-randomVar = 8
 
 class CreateBookspace(QWidget):
     # Main Window
