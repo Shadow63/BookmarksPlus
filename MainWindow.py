@@ -12,6 +12,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
+import subprocess
+import sys
 
 from PyQt5.QtWidgets import *
 import CreateBookspace
@@ -21,6 +23,7 @@ scripts_path = Path(os.path.dirname(os.path.realpath(__file__)) + '/scripts')
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.createBookspaceWindows = []
+        self.windows = []
         self.allScriptsListed = []
 
         MainWindow.setObjectName("MainWindow")
@@ -50,13 +53,13 @@ class Ui_MainWindow(object):
 
 
 
-
+        self.listWidget.itemDoubleClicked.connect(self.runBookspace)
         self.addBookspaces(self.listWidget)
         self.addBookspaceButton.clicked.connect(self.createNewBookspaceWindow)
 
 
 
-
+        randomVar = 8
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -82,7 +85,6 @@ class Ui_MainWindow(object):
         onlyfiles = [f for f in listdir(scripts_path) if isfile(join(scripts_path, f))]
         for file in onlyfiles:
             self.addBookspaceToListWidget(listWidget, file)
-            self.allScriptsListed.append(file)
 
     def addBookspaceToListWidget(self, listWidget, filename):
         lWItem = QtWidgets.QListWidgetItem()
@@ -100,6 +102,17 @@ class Ui_MainWindow(object):
         listWidget.addItem(lWItem)
         listWidget.setItemWidget(lWItem, bookspace)
 
+        self.allScriptsListed.append((lWItem, filename))
+
+    def runBookspace(self, item):
+        for tuple in self.allScriptsListed:
+            if item == tuple[0]:
+                subprocess.Popen([sys.executable, join(scripts_path, tuple[1])])
+                return
+        errorMessage = QtWidgets.QErrorMessage()
+        self.windows.append(errorMessage)
+        errorMessage.showMessage('Bookspace not found. Perhaps it was deleted?')
+
     def deleteBookspace(self, filename):
         filepath = join(scripts_path, filename)
         os.remove(filepath)
@@ -110,7 +123,6 @@ class Ui_MainWindow(object):
     def createNewBookspaceWindow(self):
         createBookspaceWindow = CreateBookspace.CreateBookspace()
         createBookspaceWindow.show()
-        CreateBookspace.resetLink()
         self.createBookspaceWindows.append(createBookspaceWindow)
 
     def retranslateUi(self, MainWindow):
@@ -128,10 +140,17 @@ class Ui_MainWindow(object):
 
 
 if __name__ == "__main__":
+    try:
+        os.mkdir(scripts_path)
+    except FileExistsError:
+        print('/scripts folder already exists, continuing')
+        pass
+
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+    MainWindow.activateWindow()
     sys.exit(app.exec_())
