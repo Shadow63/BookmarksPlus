@@ -71,6 +71,7 @@ class Ui_MainWindow(object):
         self.menuFILE.addAction(self.actionNew_Bookspace)
         self.menubar.addAction(self.menuFILE.menuAction())
 
+        MainWindow.setWindowIcon(QtGui.QIcon(join(os.path.dirname(os.path.realpath(__file__)) + 'icon.png')))
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
