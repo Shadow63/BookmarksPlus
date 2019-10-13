@@ -7,6 +7,8 @@ import AddLinks
 linksArray = []
 usernameArray = []
 passwordArray = []
+focusedArray = []
+nextArray = []
 
 class CreateBookspace(QWidget):
     # Main Window
@@ -66,12 +68,22 @@ def addPassword(password):
     passwordArray.append(password)
     print(passwordArray)
 
+def addFocused(focus):
+    focusedArray.append(focus)
+    print(focusedArray)
+
+def addNext(next):
+    nextArray.append(next)
+    print(nextArray)
+
 # Resets the array for each bookspace
 def resetLink():
     while(len(linksArray) != 0):
         linksArray.pop()
         usernameArray.pop()
         passwordArray.pop()
+        focusedArray.pop()
+        nextArray.pop()
 
 def run():
     app = QApplication(sys.argv)
