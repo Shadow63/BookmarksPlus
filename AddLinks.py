@@ -36,6 +36,7 @@ class AddLinks(QWidget):
         password_label = QLabel()
         password_label.setText('Enter the Password: ')
         self.password = QLineEdit()
+        self.password.setEchoMode(QLineEdit.Password)
 
         layout4.addWidget(password_label)
         layout4.addWidget(self.password)
@@ -92,7 +93,6 @@ class AddLinks(QWidget):
     def get_password_button(self):
         CreateBookspace.addPassword(self.password.text())
         return self.password.text()
-
 
 
 def run():

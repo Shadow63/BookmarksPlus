@@ -7,7 +7,6 @@ class BookspacesData:
         pass
 
     bookspaces_data_file = 'bookspaces.txt'
-    randomVar = 8
 
     # Retrieves the list of bookspaces the user has created
     @staticmethod
@@ -37,13 +36,14 @@ class BookspacesData:
                 init_sleep_time = 5
                 after_username_sleep_time = 1
                 enter_sleep_time = 3
+                browser = 'Firefox()'
 
                 file_ptr.write(
 """from selenium import webdriver
 import pyautogui
 import time
 
-browser = webdriver.Firefox()
+browser = webdriver.""" + browser + """
 browser.get('""" + urls[0] + "')\n")
 
                 # Handling logins, only if there are more than 1 login credentials
