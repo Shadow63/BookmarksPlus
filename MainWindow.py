@@ -110,6 +110,7 @@ class Ui_MainWindow(object):
     def createNewBookspaceWindow(self):
         createBookspaceWindow = CreateBookspace.CreateBookspace()
         createBookspaceWindow.show()
+        CreateBookspace.resetLink()
         self.createBookspaceWindows.append(createBookspaceWindow)
 
     def retranslateUi(self, MainWindow):
