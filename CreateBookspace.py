@@ -9,19 +9,19 @@ usernameArray = []
 passwordArray = []
 focusedArray = []
 nextArray = []
+randomVar = 8
 
 class CreateBookspace(QWidget):
     # Main Window
-    def __init__(self, parentWindow):
+    def __init__(self):
         super().__init__()
         self.initui()
-        self.parentWindow = parentWindow
 
     def initui(self):
         self.create_add_links_windows = []
         main_layout = QVBoxLayout()
         layout2 = QHBoxLayout()
-        layout3 = QHBoxLayout()
+        layout3 = QGridLayout()
 
         # Naming the Bookspace
         fname = QLabel()
@@ -32,10 +32,28 @@ class CreateBookspace(QWidget):
         layout2.addWidget(fname)
         layout2.addWidget(self.name)
 
+        radiobutton = QRadioButton("Firefox")
+        radiobutton.country = "Firefox"
+        radiobutton.toggled.connect(self.onClicked)
+        layout3.addWidget(radiobutton, 0, 0)
+
+        radiobutton = QRadioButton("Chrome")
+        radiobutton.setChecked(True)
+        radiobutton.country = "Chrome"
+        radiobutton.toggled.connect(self.onClicked)
+        layout3.addWidget(radiobutton, 0, 1)
+
+        radiobutton = QRadioButton("Microsoft Edge")
+        radiobutton.country = "Edge"
+        radiobutton.toggled.connect(self.onClicked)
+        layout3.addWidget(radiobutton, 0, 2)
+
         main_layout.addLayout(layout2)
+        main_layout.addLayout(layout3)
         create = QPushButton('Create')
         main_layout.addWidget(create)
         create.clicked.connect(self.get_name_button)
+        create.clicked.connect(self.onClicked)
         create.clicked.connect(self.close)
 
         links = QPushButton('Add a Link')
@@ -47,16 +65,19 @@ class CreateBookspace(QWidget):
     # Gets the name of the Bookspace
     def get_name_button(self):
         BookspacesData.add_bookspace(self.name.text(), linksArray, usernameArray, passwordArray, focusedArray, nextArray)
-        self.parentWindow.addBookspaces(self.parentWindow.listWidget)
+
         return self.name.text()
 
     def createAddLinksWindow(self):
         create_add_links_window = AddLinks.AddLinks()
         create_add_links_window.show()
-        # self.links.append(create_add_links_window.get_name_button())
         self.create_add_links_windows.append(create_add_links_window)
 
-        # print(self.links)
+    def onClicked(self):
+        radioButton = self.sender()
+        if radioButton.isChecked():
+            return radioButton.country
+
 
 
 def addLink(link):
