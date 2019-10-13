@@ -1,9 +1,10 @@
 import sys
-from PyQt5 import QtGui
+from Bookspace import BookspacesData
 from PyQt5.QtWidgets import *
 
 import AddLinks
 
+linksArray = []
 
 class CreateBookspace(QWidget):
     # Main Window
@@ -12,8 +13,7 @@ class CreateBookspace(QWidget):
         self.initui()
 
     def initui(self):
-        self.createAddLinksWindows = []
-        self.links = []
+        self.create_add_links_windows = []
         main_layout = QVBoxLayout()
         layout2 = QHBoxLayout()
         layout3 = QHBoxLayout()
@@ -40,15 +40,22 @@ class CreateBookspace(QWidget):
 
     # Gets the name of the Bookspace
     def get_name_button(self):
-        print(self.links[0])
+        # print(self.links[0])
+        BookspacesData.add_bookspace(self.name.text(), ['https://apple.com/'])
         return self.name.text()
 
     def createAddLinksWindow(self):
         create_add_links_window = AddLinks.AddLinks()
         create_add_links_window.show()
-        self.links.append(create_add_links_window.get_name_button())
-        self.createAddLinksWindows.append(create_add_links_window)
+        # self.links.append(create_add_links_window.get_name_button())
+        self.create_add_links_windows.append(create_add_links_window)
 
+        # print(self.links)
+
+
+def addLink(link):
+    linksArray.append(link)
+    print(linksArray)
 
 def run():
     app = QApplication(sys.argv)

@@ -1,6 +1,6 @@
 import sys
-from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
+import CreateBookspace
 
 class AddLinks(QWidget):
     # Main Window
@@ -31,6 +31,7 @@ class AddLinks(QWidget):
 
 
     def get_name_button(self):
+        CreateBookspace.addLink(self.link.text())
         return self.link.text()
 
 
