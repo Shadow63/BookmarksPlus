@@ -20,6 +20,7 @@ class AddLinks(QWidget):
         link_label = QLabel()
         link_label.setText("Enter a link: ")
         self.link = QLineEdit()
+        self.link.setText('https://')
 
         layout2.addWidget(link_label)
         layout2.addWidget(self.link)
