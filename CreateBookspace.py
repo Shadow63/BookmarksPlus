@@ -5,6 +5,10 @@ from PyQt5.QtWidgets import *
 import AddLinks
 
 linksArray = []
+usernameArray = []
+passwordArray = []
+focusedArray = []
+nextArray = []
 
 class CreateBookspace(QWidget):
     # Main Window
@@ -41,8 +45,6 @@ class CreateBookspace(QWidget):
 
     # Gets the name of the Bookspace
     def get_name_button(self):
-       # BookspacesData.add_bookspace(self.name.text(), ['https://apple.com/'])
-        #linksArray = []
         return self.name.text()
 
     def createAddLinksWindow(self):
@@ -58,9 +60,30 @@ def addLink(link):
     linksArray.append(link)
     print(linksArray)
 
+def addUsername(username):
+    usernameArray.append(username)
+    print(usernameArray)
+
+def addPassword(password):
+    passwordArray.append(password)
+    print(passwordArray)
+
+def addFocused(focus):
+    focusedArray.append(focus)
+    print(focusedArray)
+
+def addNext(next):
+    nextArray.append(next)
+    print(nextArray)
+
+# Resets the array for each bookspace
 def resetLink():
     while(len(linksArray) != 0):
         linksArray.pop()
+        usernameArray.pop()
+        passwordArray.pop()
+        focusedArray.pop()
+        nextArray.pop()
 
 def run():
     app = QApplication(sys.argv)
